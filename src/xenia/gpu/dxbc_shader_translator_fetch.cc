@@ -77,17 +77,12 @@ void DxbcShaderTranslator::ProcessVertexFetchInstruction(
       // nearest (as floor(index + 0.5) because rounding to the nearest even
       // makes no sense for addressing, both 1.5 and 2.5 would be 2).
       {
+        // code from u/TTFH3500 to fix terrain glitches
         bool index_operand_temp_pushed = false;
-        dxbc::Src index_operand(
-            LoadOperand(instr.operands[0], 0b0001, index_operand_temp_pushed)
-                .SelectFromSwizzled(0));
-        if (instr.attributes.is_index_rounded) {
-          a_.OpAdd(address_dest, index_operand, dxbc::Src::LF(0.5f));
-          a_.OpRoundNI(address_dest, address_src);
-        } else {
-          a_.OpRoundNI(address_dest, index_operand);
-        }
-        if (index_operand_temp_pushed) {
+       dxbc::Src index_operand(LoadOperand(instr.operands[0], 0b0001, index_operand_temp_pushed).SelectFromSwizzled(0));
+       a_.OpAdd(address_dest, index_operand, dxbc::Src::LF(0.003f));
+       a_.OpRoundNI(address_dest, address_src);
+       if (index_operand_temp_pushed) {
           PopSystemTemp();
         }
       }
