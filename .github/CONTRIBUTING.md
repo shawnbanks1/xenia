@@ -12,7 +12,7 @@ All information in xenia has been derived from reverse engineering legally-owned
 games, hardware, and tools made public by Microsoft (such as the XNA Game Studio
 tooling), scouring documentation made public by Microsoft (such as slide decks
 and other presentations at conferences), and information from code made public
-by 3rd party companies (like the Valve SDKs).
+by 3rd party companies (like the Valve SDKs). 
 
 The official Microsoft Xbox Development Kits (XDKs) are not to be used for any
 information added to the project. The contributors do not want the XDKs, nor do
